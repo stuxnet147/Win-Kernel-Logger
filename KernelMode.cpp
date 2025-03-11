@@ -1,3 +1,5 @@
+
+#define SizeAlign(Size) ((Size + 0xFFF) & 0xFFFFFFFFFFFFF000)
 //
 // structs
 //
@@ -51,6 +53,15 @@ typedef struct _LOG_ENTRY
 	UINT32 Remarks;
 	CHAR Data[1];         
 } LogEntry, * PLOG_ENTRY;
+
+typedef struct _SHARED_MEMORY_CONTEXT
+{
+	PVOID KernelVirtualAddress;
+	PVOID UserVirtualAddress;
+	SIZE_T Size;
+	PMDL Mdl;
+	HANDLE ProcessId;
+} SHARED_MEMORY_CONTEXT, * PSHARED_MEMORY_CONTEXT;
 #pragma pack(pop)
 
 //
